@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% for event in events  %}
+Big Events - Event {{event.id}}
+{% else %}
+Big Events - No Record
+{% endfor %}
+{% endblock %}
+
+{% block body %}
+{% for event in events  %}
+<fieldset>
+    <legend class='h2'>{{ event.name }}</legend>
+		<font class='medtype'>{{ event.datetime|date('D,  j M Y, G:i') }} @ {{ event.city }}</font>
+        <br><br>
+        <img id='descimg' src='{{ event.image }}' width='500' alt='{{ event.id }}'>
+        <br><br>
+        	About {{ event.name }}:<br>
+			<div id='descript'>{{ event.descript }}<br></div>
+			<br>
+            Capacity: {{ event.capacity }} persons<br>
+			<br>
+			<a href='{{ event.link }}' target="_blank">Learn more about this event.</a><br>            
+            <br>
+            Contact:<br>
+            {{ event.address }}, {{ event.zip }} {{ event.city }}<br>
+            (+43) {{ event.phone }}<br>
+            {{ event.email }}<br>
+            <p class="mt-4 text-muted">Category: {{ event.type }}</p>
+
+                    <div class="col-md-10">
+                        <div class="btn-group">
+            <a href='{{ path('event_edit', {'id': event.id}) }}' class='btn btn-outline-dark'>Edit</a>&nbsp;
+            {{ include('event/_delete_form.html.twig') }}&nbsp;
+            <a href='{{ path('event_index') }}' class='btn btn-outline-dark'>Back to Index</a>
+        </div>
+    </div>
+  
+     {% else %}
+     <p class="lead font-weight-normal" align='center' style="padding-top: 15px;">No record found</p>
+     {% endfor %}    
+    </fieldset>
+     
+{% endblock %}
+
+ {% block footer %}
+ {{ parent() }}
+        {% endblock %}

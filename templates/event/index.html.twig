@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Events - Index{% endblock %}
+
+{% block body %}
+<div class="position-relative overflow-hidden p-3 m-md-3 text-center bg-light" style="
+background-image: url('{{asset('images/header.jpg')}}');">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.4);">
+                <div class="col-md-5 p-lg-3 mx-auto my-auto">
+                    <h1 class="display-6 font-weight-normal text-white head-text">Big Events</h1>
+                    <p class="lead font-weight-normal text-white" >Create. Compete. Celebrate.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-flex flex-wrap pt-3">
+            <b style="line-height: 2;">Filter by Category:</b>&nbsp;&nbsp;
+            {% if 'index' in app.request.uri %}
+            <a href="{{ path('event_index') }}" class="btn btn-dark btn-index">All</a>&nbsp;&nbsp;
+            {% else %}        
+            <a href="{{ path('event_index') }}" class="btn btn-outline-dark btn-index">All</a>&nbsp;&nbsp;
+    {% endif %}
+    {% if 'Sport' in app.request.uri %}
+    <a href="{{ path('filter_type', {'type': 'Sport'}) }}" class="btn btn-dark btn-index">Sport</a>&nbsp;&nbsp;
+    {% else %}        
+    <a href="{{ path('filter_type', {'type': 'Sport'}) }}" class="btn btn-outline-dark btn-index">Sport</a>&nbsp;&nbsp;
+{% endif %}
+{% if 'Music' in app.request.uri %}
+<a href="{{ path('filter_type', {'type': 'Music'}) }}" class="btn btn-dark btn-index">Music</a>&nbsp;&nbsp;
+            {% else %}        
+            <a href="{{ path('filter_type', {'type': 'Music'}) }}" class="btn btn-outline-dark btn-index">Music</a>&nbsp;&nbsp;
+    {% endif %}
+    {% if 'Performance' in app.request.uri %}
+    <a href="{{ path('filter_type', {'type': 'Performance'}) }}" class="btn btn-dark btn-index">Performance</a>&nbsp;&nbsp;
+            {% else %}        
+            <a href="{{ path('filter_type', {'type': 'Performance'}) }}" class="btn btn-outline-dark btn-index">Performance</a>&nbsp;&nbsp;
+    {% endif %}
+    {% if 'Culture' in app.request.uri %}
+    <a href="{{ path('filter_type', {'type': 'Culture'}) }}" class="btn btn-dark btn-index">Culture</a>&nbsp;&nbsp;
+            {% else %}        
+            <a href="{{ path('filter_type', {'type': 'Culture'}) }}" class="btn btn-outline-dark btn-index">Culture</a>&nbsp;&nbsp;
+    {% endif %}
+    {% if 'Gastronomy' in app.request.uri %}
+    <a href="{{ path('filter_type', {'type': 'Gastronomy'}) }}" class="btn btn-dark btn-index">Gastronomy</a>
+            {% else %}        
+            <a href="{{ path('filter_type', {'type': 'Gastronomy'}) }}" class="btn btn-outline-dark btn-index">Gastronomy</a>
+    {% endif %}
+        </div>
+
+        <div class="container d-flex flex-wrap p-2">
+            {% for event in events  %}
+            <div class='card m-2 border' style='width: 12rem;'>
+                            <img src='{{event.image}}' class='card-img-top'>
+                            <div class='card-body d-flex flex-column'>
+                        <h5 class='card-title'><a href='{{ path('event_show', {'id': event.id}) }}'>{{event.name}}</a></h5>
+                        <p class='card-text'><small class="text-muted">{{event.datetime|date('D,  j M Y, G:i')}}
+                        <br>@ {{event.city}}</small></p>
+                                <p class='card-text' id='desccut'>{{event.descript}}</p>
+                                <p class="card-text"><small class="text-muted">Category: <a href='{{ path('filter_type', {'type': event.type}) }}' style='font-weight: normal;'>{{event.type}}</a></small></p>
+                                <p>
+                                    <div class="btn-group">
+                                         <a href='{{ path('event_show', {'id': event.id}) }}' class='btn btn-outline-dark btn-index'>View</a>&nbsp;                        
+                                <a href='{{ path('event_edit', {'id': event.id}) }}' class='btn btn-outline-dark btn-index'>Edit</a>&nbsp;
+                                {{ include('event/_delete_form.html.twig') }}
+                            </div>
+                            </p>
+                            </div>
+                        </div>
+                           {% else %}
+                <p class="lead font-weight-normal">No record found</p>
+                  {% endfor %}
+                </div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Events - Edit Event{% endblock %}
+
+{% block body %}
+<fieldset>
+
+    <legend class='h2'>Edit Event ID: {{id}}</legend>
+    <br><br>
+    {{ include('event/_form.html.twig', {'button_label': 'Save Edit'}) }}
+<br>
+    
+</fieldset>
+{% endblock %}

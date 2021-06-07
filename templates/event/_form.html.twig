@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="col-md-12">
+        <div class="btn-group">
+    <button class="btn btn-outline-dark">{{ button_label|default('Add Event') }}</button>&nbsp;&nbsp;        
+{{ form_end(form) }}
+{% if 'edit' in app.request.uri %}
+    {{ include('event/_delete_form.html.twig') }}&nbsp;&nbsp;
+    <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-outline-dark">View</a>&nbsp;&nbsp;
+    {% endif %}
+<a href="{{ path('event_index') }}" class="btn btn-outline-dark">Back to Index</a>
+</div>
+</div>

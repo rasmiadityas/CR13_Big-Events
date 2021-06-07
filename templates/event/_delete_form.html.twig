@@ -1,0 +1,9 @@
+<form method="post" action="{{ path('event_delete', {'id': event.id}) }}" onsubmit="return confirm('Are you sure you want to delete this event ({{event.name}})?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ event.id) }}">
+    {% if ('index' in app.request.uri or 'category' in app.request.uri) %}
+    <button class="btn btn-outline-dark btn-index">Delete</button>
+    {% else %}
+    <button class="btn btn-outline-dark">Delete</button>
+        {% endif %}
+        
+</form>
