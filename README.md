@@ -1,13 +1,12 @@
-# CFLMS-RasmiSilasari-CodeReview-13
+# Portfolio: Big Events
 210514 Code Review 13 - Rasmiaditya Silasari
 
 # Explanation of the project
 Big Events is a website where the admin can do CRUD actions on event. New event can be added by clicking 'Add Event' on the navbar. All events are listed on the index page (http://localhost:8000/index) where the admin can edit, delete or view each event directly by clicking the respective buttons on each event's card. The edit and delete buttons are also available in the details page.
 
 # File organization
-- Inside the zipped folder there are two subfolders: the symfony project and exported database
-- The symfony project files (without the vendor folder) is in the folder 'CR13_bigevents_rasmisilasari'
 - The exported database (cr13_bigevents_rasmisilasari.sql) is in the folder 'database'
+- All symfony project files (without the vendor folder) is also available in the zip file 'CFLMS-RasmiSilasari-CodeReview-13.zip'
 
 # The criteria for grading
 1. (20) Create a nice looking responsive theme. You can use Bootstrap or just HTML/CSS. 
